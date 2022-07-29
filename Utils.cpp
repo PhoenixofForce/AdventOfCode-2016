@@ -41,6 +41,7 @@ void getLines(std::vector<std::string>& list, int year, int day) {
   f.close();
 }
 
+/*
 template<typename T>
 void getLines(std::vector<T>& list, int year, int day, T parser(const std::string&)) {
   std::ifstream f = getReader(year, day);
@@ -50,7 +51,7 @@ void getLines(std::vector<T>& list, int year, int day, T parser(const std::strin
     list.push_back(parser(line));
   }
   f.close();
-}
+}*/
 
 void getParagraphs(std::vector<std::string>& list, int year, int day){
   std::ifstream f = getReader(year, day);
@@ -71,7 +72,7 @@ void getParagraphs(std::vector<std::string>& list, int year, int day){
   if(current.length() > 0) list.push_back(trim(current));
 }
 
-
+/*
 template<typename T>
 void getParagraphs(std::vector<T>& list, int year, int day, T parser(const std::string&)) {
   std::ifstream f = getReader(year, day);
@@ -90,4 +91,4 @@ void getParagraphs(std::vector<T>& list, int year, int day, T parser(const std::
   }
 
   if(current.length() > 0) list.push_back(parser(trim(current)));
-}
+}*/
