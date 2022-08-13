@@ -4,6 +4,6 @@
 #include "../Utils.h"
 #include <iostream>
 
-size_t  decompress(const std::string& compressed, bool part2);
+size_t decompress(const std::string& compressed, bool part2);
 
 #endif
