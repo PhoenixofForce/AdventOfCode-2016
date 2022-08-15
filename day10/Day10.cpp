@@ -49,7 +49,7 @@ int main() {
 
                 //Part1
                 if(lower == 17 && higher == 61) {
-                    std::cout <<bot.id << std::endl;
+                    print() << bot.id << std::endl;
                 }
 
                 InstructionResolve instr = bot.instruction;
@@ -102,7 +102,7 @@ int main() {
             out *= i;
         }
     }
-    std::cout << out;
+    print() << out;
 
     return 0;
 }

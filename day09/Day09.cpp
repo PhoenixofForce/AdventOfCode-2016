@@ -2,8 +2,8 @@
 
 int main() {
     std::string input{ getFile(2016, 9) };
-    
-    std::cout << decompress(input, false) << std::endl << decompress(input, true);
+    print() << decompress(input, false) << std::endl;;
+    print() << decompress(input, true) << std::endl ;
 
     return 0;
 }

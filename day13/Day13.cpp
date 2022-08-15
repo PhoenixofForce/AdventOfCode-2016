@@ -4,7 +4,7 @@ static int id = std::stoi(getFile(2016, 13));
 int main() {  
     Pos start{1, 1, 0};
     Pos end{ a_star::a_star<Pos>(start, addPosses, isEnd) };
-    std::cout << end.x << " " << end.y << " in " << end.moves << std::endl;;
+    print() << end.x << " " << end.y << " in " << end.moves << std::endl;;
 
     std::vector<Pos> open{};
 
@@ -14,7 +14,7 @@ int main() {
     for(int i{0}; i < open.size(); i++) {
         current = open.at(i);
         if(current.moves < -50) {
-            std::cout << i << std::endl;
+            print() << i << std::endl;
             break;
         }
 

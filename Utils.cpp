@@ -1,5 +1,7 @@
 #include "Utils.h"
 
+static std::chrono::time_point<clock_type> start{};
+
 std::string& trim(std::string& str) {
     std::regex r("(^\\W+|\\W+$)");
     str = std::regex_replace(str, r, "");
@@ -15,6 +17,7 @@ std::ifstream getReader(int year, int day) {
   std::ifstream f;
   std::cout << getFileName(year, day) << std::endl;
   f.open(getFileName(year, day));
+
   return f;
 }
 
@@ -28,6 +31,7 @@ std::string getFile(int year, int day){
   }
   f.close();
 
+  start = clock_type::now();
   return out;
 }
 
@@ -39,19 +43,8 @@ void getLines(std::vector<std::string>& list, int year, int day) {
     list.push_back(line);
   }
   f.close();
+  start = clock_type::now();
 }
-
-/*
-template<typename T>
-void getLines(std::vector<T>& list, int year, int day, T parser(const std::string&)) {
-  std::ifstream f = getReader(year, day);
-
-  std::string line;
-  while(std::getline(f, line)) {
-    list.push_back(parser(line));
-  }
-  f.close();
-}*/
 
 void getParagraphs(std::vector<std::string>& list, int year, int day){
   std::ifstream f = getReader(year, day);
@@ -70,25 +63,25 @@ void getParagraphs(std::vector<std::string>& list, int year, int day){
   }
 
   if(current.length() > 0) list.push_back(trim(current));
+  start = clock_type::now();
 }
 
-/*
-template<typename T>
-void getParagraphs(std::vector<T>& list, int year, int day, T parser(const std::string&)) {
-  std::ifstream f = getReader(year, day);
+std::ostream& print(int part) {
+  static std::chrono::time_point<clock_type> lastSolution{};
+  static int solution{0};
+  double timeFromStart{ std::chrono::duration_cast<second_type>(clock_type::now() - start).count() };
 
-  std::string line;
-  std::string current;
-  while(std::getline(f, line)) {
-    if(line.length() == 0) {
-      list.push_back(parser(trim(current)));
-      current = "";
-
-      continue;
-    }
-
-    current += line + " ";
+  std::cout << std::endl <<  "------------------" << std::endl;
+  std::cout << "Solution for part " << (part > 0? part: solution + 1);
+  if(solution > 0) {
+    double timeFromLast{std::chrono::duration_cast<second_type>(clock_type::now() - lastSolution).count()};
+    std::cout << " in " << timeFromLast << "ms";
+  } else {
+    std::cout << " in " << timeFromStart << "ms";
   }
+  std::cout << " (" << timeFromStart << "ms total)" << std::endl;
 
-  if(current.length() > 0) list.push_back(parser(trim(current)));
-}*/
+  solution += 1;
+  lastSolution = clock_type::now();
+  return std::cout;
+}

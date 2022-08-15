@@ -47,7 +47,7 @@ int main() {
         linePointer++;
     }
 
-    std::cout << registry["a"];
+    print(part2? 2: 1) << registry["a"];
 
     return 0;
 }

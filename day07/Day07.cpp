@@ -10,7 +10,8 @@ int main() {
         if(processLine(lines.at(i))) out++;
         if(processLine2(lines.at(i))) out2++;
     }
-    std::cout << out << std::endl << out2 << std::endl;
+    print() << out << std::endl;
+    print() << out2 << std::endl;
 
     return 0;
 }

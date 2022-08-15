@@ -16,8 +16,7 @@ int main() {
 
         index++;
     }
-    std::cout << "Part 1: " << std::endl;
-    std::cout << out << std::endl;
+    print() << out << std::endl;
 
     char out2[8]{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
     int found = 0;
@@ -44,7 +43,7 @@ int main() {
         index++;
     }
 
-    std::cout << "Part 2: " << std::endl;
+    print();
     for(int i = 0; i < 8; i++) {
         std::cout << out2[i];
     }

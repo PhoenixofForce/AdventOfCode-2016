@@ -58,7 +58,7 @@ int main() {
         iterations++;
 
         if(current.floor1.size() == 0 && current.floor2.size() == 0 && current.floor3.size() == 0) {
-            std::cout << -current.numberOfMoves << "; " << iterations << " searched";
+            print(part2? 2: 1) << -current.numberOfMoves << "; " << iterations << " searched";
             break;
         }
 

@@ -10,7 +10,7 @@ int main() {
     for(const Triangle& t: triangles) {
         if(checkTriangle(t)) out1++;
     }
-    std::cout << out1 << std::endl;
+    print() << out1 << std::endl;
 
     int out2{0};
     for(int i = 0; i < triangles.size(); i+=3) {
@@ -26,7 +26,7 @@ int main() {
         if(checkTriangle(n2)) out2++;
         if(checkTriangle(n3)) out2++;
     }
-    std::cout << out2 << std::endl;
+    print() << out2 << std::endl;
 
     return 0;
 }

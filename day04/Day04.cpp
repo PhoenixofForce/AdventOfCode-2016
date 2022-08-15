@@ -8,8 +8,7 @@ int main() {
     for(std::string line: input) {
         out += sectorId(line);
     }
-    std::cout << "Part 1" << std::endl;
-    std::cout << out << std::endl;
+    print(1) << out << std::endl;
 
     return 0;
 }
@@ -69,7 +68,7 @@ int sectorId(const std::string& line) {
     if(isValid) {
         std::string decr = decrypt(name, std::stoi(sector));
         if(decr.find("north") != std::string::npos) {
-            std::cout << decr << " " << sector << std::endl;
+            print(2) << decr << " " << sector << std::endl;
         }
     }
 

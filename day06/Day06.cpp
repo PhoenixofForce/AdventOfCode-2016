@@ -8,7 +8,6 @@ int main() {
     std::vector<std::vector<Letter>> letters{};
     for(int i = 0; i < length; i++) letters.push_back({});
 
-
     for(std::string line: input) {
         for(int i = 0; i < length; i++) {
             std::vector<Letter>& letterList = letters.at(i);

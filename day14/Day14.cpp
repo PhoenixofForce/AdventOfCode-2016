@@ -17,7 +17,7 @@ int main() {
 
                 if(std::regex_search(futureHashed, std::regex("(" + match.str(1) + ")\\1{4}"))) {
                     keysFound++;
-                    std::cout << "Key " << keysFound << ", index: " << i << " = " << hashed << std::endl;   
+                    (keysFound == 64? print(): std::cout) << "Key " << keysFound << ", index: " << i << " = " << hashed << std::endl;   
                     break;
                 }
             }

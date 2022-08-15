@@ -36,7 +36,7 @@ int main() {
             != positions.end()) {
                 part2 = true;
                 std::cout << "PART 2: " << std::endl;
-                std::cout << "x: " << x << std::endl << "y: " << y << std::endl << "res: " << std::abs(x) + std::abs(y) << std::endl; 
+                print(2) << "x: " << x << std::endl << "y: " << y << std::endl << "res: " << std::abs(x) + std::abs(y) << std::endl; 
             } else {
                 positions.push_back(current);
             }
@@ -45,7 +45,7 @@ int main() {
     }
 
     std::cout << "PART1: " << std::endl;
-    std::cout << "x: " << x << std::endl << "y: " << y << std::endl << "res: " << std::abs(x) + std::abs(y) << std::endl;
+    print(1) << "x: " << x << std::endl << "y: " << y << std::endl << "res: " << std::abs(x) + std::abs(y) << std::endl;
 
     return 0;
 }

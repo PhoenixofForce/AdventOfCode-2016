@@ -71,7 +71,7 @@ int main() {
             if(screen[y][x]) out++;
         }
     }
-    std::cout << out;
+    print() << out;
 
     return 0;
 }

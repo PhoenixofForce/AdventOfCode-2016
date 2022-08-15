@@ -13,13 +13,16 @@ void addStates(std::vector<State>& list, const State& current);
 
 */
 
+template<typename T>
+using StateGenerator = void(*)(std::vector<T>&, const T&);
+
+template<typename T>
+using StateConfirmer= bool(*)(const T&);
+
 namespace a_star {
 
 template <typename State>
-State a_star(
-    const State& start, 
-    void (*generator) (std::vector<State>&, const State&), 
-    bool (*confirmer) (const State&)) {
+State a_star(const State& start, StateGenerator<State> generator, StateConfirmer<State> confirmer) {
 
     std::priority_queue<State> queue{};
     std::unordered_set<State> visited{};
