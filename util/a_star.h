@@ -21,14 +21,23 @@ using StateConfirmer= bool(*)(const T&);
 
 namespace a_star {
 
+/** Finds the shortest path
+  * @param start the first State from which you want to find an end state
+  * @param generator a function which generates states that can be reached from a given state
+  * @param confirmer a function  that returns true, when a given state is a desired goal
+  * @param doOuput should optional debug outputs be made? (default: true)
+  * @param returnFirst should the search return the first found (aka shortest) path? if false it returns the last found (aka longest) path (default: true)
+  * @return the found end state
+  */
 template <typename State>
-State a_star(const State& start, StateGenerator<State> generator, StateConfirmer<State> confirmer) {
+State a_star(const State& start, StateGenerator<State> generator, StateConfirmer<State> confirmer, bool doOutput = true, bool returnFirst = true) {
 
     std::priority_queue<State> queue{};
     std::unordered_set<State> visited{};
     queue.push(start);
 
     int iterations{};   
+    State last;
     while (!queue.empty()) {
         State current{ queue.top() };
         queue.pop();
@@ -37,12 +46,14 @@ State a_star(const State& start, StateGenerator<State> generator, StateConfirmer
         visited.insert(current);
 
         if(iterations%1000 == 0) {
-            std::cout << iterations << " searched; " << queue.size() << " in queue" << std::endl;
+            if(doOutput) std::cout << iterations << " searched; " << queue.size() << " in queue" << std::endl;
         }
         iterations++;
 
         if(confirmer(current)) {
-            return current;
+            if(returnFirst) return current;
+            last = current;
+            continue;
         }
 
         std::vector<State> newStates{};
@@ -52,7 +63,7 @@ State a_star(const State& start, StateGenerator<State> generator, StateConfirmer
         }
     }
     
-    return start;
+    return last;
 }
 
 };
