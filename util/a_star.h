@@ -7,9 +7,25 @@
 #include <queue>
 
 /*
+#include "../util/a_star.h"
 
 bool isEnd(const State& state);
 void addStates(std::vector<State>& list, const State& current);
+
+template <>
+class std::hash<State> {
+ public:
+  size_t operator()(const State &state) const;
+};
+
+size_t std::hash<State>::operator()(const State &state) { } 
+
+bool operator<(const State& lhs, const State& rhs  {
+    return lhs.moves - heuristic(lhs) < rhs.moves - heuristic(rhs); //A*
+    return lhs.moves < rhs.moves; //Dijkstra
+}
+
+bool operator==(const State& lhs, const State& rhs);
 
 */
 
