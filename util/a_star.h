@@ -18,9 +18,9 @@ class std::hash<State> {
   size_t operator()(const State &state) const;
 };
 
-size_t std::hash<State>::operator()(const State &state) { } 
+size_t std::hash<State>::operator()(const State &state) const { } 
 
-bool operator<(const State& lhs, const State& rhs  {
+bool operator<(const State& lhs, const State& rhs)  {
     return lhs.moves - heuristic(lhs) < rhs.moves - heuristic(rhs); //A*
     return lhs.moves < rhs.moves; //Dijkstra
 }
@@ -53,7 +53,7 @@ State a_star(const State& start, StateGenerator<State> generator, StateConfirmer
     queue.push(start);
 
     int iterations{};   
-    State last;
+    State last{ start };
     while (!queue.empty()) {
         State current{ queue.top() };
         queue.pop();
