@@ -1,4 +1,4 @@
-day := 22
+day := 23
 all:
 	@g++ -o main day$(day)/Day$(day).cpp Utils.cpp util/md5.cpp
 	@main.exe
