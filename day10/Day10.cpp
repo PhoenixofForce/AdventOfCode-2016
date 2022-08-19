@@ -10,8 +10,8 @@ int main() {
     //parse input
     for(std::string& line: input) {
         if(line.find("value") == 0) {
-            int value{std::stoi(line.substr(6, line.find("goes") - 7))};
-            int botID{std::stoi(line.substr(line.find("bot") + 4))};
+            int value = std::stoi(line.substr(6, line.find("goes") - 7));
+            int botID = std::stoi(line.substr(line.find("bot") + 4));
             
             if(bots.find(botID) == bots.end()) {
                 bots[botID] = Robot{botID};
@@ -22,9 +22,9 @@ int main() {
         }
 
         else if(line.find("bot") == 0) {
-            int botID{std::stoi(line.substr(4, line.find("gives") - 5))};
+            int botID = std::stoi(line.substr(4, line.find("gives") - 5));
 
-             if(bots.find(botID) == bots.end()) {
+            if(bots.find(botID) == bots.end()) {
                 bots[botID] = Robot{botID};
             }
 
@@ -52,14 +52,14 @@ int main() {
                     print() << bot.id << std::endl;
                 }
 
-                InstructionResolve instr = bot.instruction;
+                const InstructionResolve& instr{ bot.instruction };
 
                 //move lower chip to bot
                 if(instr.lowerID >= 0) {
                     if(bots.find(instr.lowerID) == bots.end()) {
                         bots[instr.lowerID] = Robot{instr.lowerID};
                     }
-                    Robot* bot = findBot(bots, instr.lowerID);
+                    Robot* bot{ findBot(bots, instr.lowerID) };
                     bot->chips.push_back(lower);
                 } 
                 
@@ -77,7 +77,7 @@ int main() {
                     if(bots.find(instr.higherID) == bots.end()) {
                         bots[instr.higherID] = Robot{instr.higherID};
                     }
-                    Robot* bot = findBot(bots, instr.higherID);
+                    Robot* bot{ findBot(bots, instr.higherID) };
                     bot->chips.push_back(higher);
                 } 
                 
@@ -108,26 +108,26 @@ int main() {
 }
 
 InstructionResolve parseInstructions(const std::string& instruction) {
-    int low{};
-    int high{};
+    int low = 0;
+    int high = 0;
 
     if(instruction.find("low to bot") != std::string::npos) {
-        size_t lowStart{instruction.find("low to bot") + 11};
+        size_t lowStart = instruction.find("low to bot") + 11;
         low = std::stoi(instruction.substr(lowStart, instruction.find("and high") - lowStart - 1));
     }
 
     if(instruction.find("low to output") != std::string::npos) {
-        size_t lowStart{instruction.find("low to output") + 14};
+        size_t lowStart = instruction.find("low to output") + 14;
         low = -std::stoi(instruction.substr(lowStart, instruction.find("and high") - lowStart - 1)) - 1;
     }
 
      if(instruction.find("high to bot") != std::string::npos) {
-        size_t highStart{instruction.find("high to bot") + 12};
+        size_t highStart = instruction.find("high to bot") + 12;
         high = std::stoi(instruction.substr(highStart));
     }
 
     if(instruction.find("high to output") != std::string::npos) {
-        size_t highStart{instruction.find("high to output") + 15};
+        size_t highStart = instruction.find("high to output") + 15;
         high = -std::stoi(instruction.substr(highStart)) - 1;
     }
 

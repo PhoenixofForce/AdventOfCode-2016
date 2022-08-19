@@ -1,10 +1,10 @@
 #include "Day19.h"
 
 int main() {
-    int numberOfElves{ std::stoi(getFile(2016, 19)) };
+    int numberOfElves = std::stoi(getFile(2016, 19));
     std::deque<Elve> elves{};
 
-    for(int i{0}; i < numberOfElves; i++) {
+    for(int i = 0; i < numberOfElves; i++) {
         elves.push_back({i, 1});
     }
 
@@ -20,7 +20,7 @@ int main() {
     std::deque<Elve> elvesLeft{};
     std::deque<Elve> elvesRight{};
 
-    for(int i{0}; i < numberOfElves; i++) {
+    for(int i = 0; i < numberOfElves; i++) {
         if(i <= numberOfElves / 2) elvesLeft.push_back({i, 1});
         else elvesRight.push_front({i, 1});
     }

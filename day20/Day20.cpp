@@ -4,8 +4,8 @@ int main() {
     std::vector<Range> ranges{};
     getLines<Range>(ranges, 2016, 20, string2range);
 
-    long long out{};
-    long long i{ 0 };
+    long long out = 0;
+    long long i = 0;
     while(i <= 4294967295) {
         long long result = inRanges(ranges, i);
         if(result == i) {
@@ -28,8 +28,8 @@ int main() {
 Range string2range(const std::string& line) {
     auto pos{ line.find('-') };
 
-    long long lower{ std::stoll(line.substr(0, pos)) };
-    long long higher{ std::stoll(line.substr(pos + 1)) };
+    long long lower = std::stoll(line.substr(0, pos));
+    long long higher = std::stoll(line.substr(pos + 1));
 
     return {lower, higher};
 }

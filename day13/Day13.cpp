@@ -81,29 +81,16 @@ int bitCount(int n) {
  }
 
 
-namespace std {
-size_t hash<Pos>::operator()(const Pos& pos) const{
+size_t std::hash<Pos>::operator()(const Pos& pos) const{
     size_t hash = 17;
     hash = hash*31 + pos.x;
     hash = hash*31 + pos.y;
     return hash;
-  }
-}
+ }
+
 
 bool operator<(const Pos& lhs, const Pos& rhs) {
     return lhs.moves/* - heurstic(lhs)*/ < rhs.moves;// - heurstic(rhs);
-}
-
-bool operator<=(const Pos& lhs, const Pos& rhs) {
-    return lhs.moves/* - heurstic(lhs)*/ <= rhs.moves;// - heurstic(rhs);
-}
-
-bool operator>(const Pos& lhs, const Pos& rhs) {
-    return lhs.moves/* - heurstic(lhs)*/ > rhs.moves;// - heurstic(rhs);
-}
-
-bool operator>=(const Pos& lhs, const Pos& rhs) {
-    return lhs.moves/* - heurstic(lhs)*/ >= rhs.moves;// - heurstic(rhs);
 }
 
 bool operator==(const Pos& lhs, const Pos& rhs) {

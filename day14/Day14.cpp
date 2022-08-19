@@ -3,8 +3,8 @@
 int main() {
     std::string input{ getFile(2016, 14) };
     
-    int i{0};
-    int keysFound{0};
+    int i = 0;
+    int keysFound = 0;
     while(keysFound < 64) {
         std::string currentKey{input + std::to_string(i)};
         std::string hashed{hash(currentKey)};

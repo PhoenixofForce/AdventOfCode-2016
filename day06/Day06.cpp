@@ -10,7 +10,7 @@ int main() {
 
     for(std::string line: input) {
         for(int i = 0; i < length; i++) {
-            std::vector<Letter>& letterList = letters.at(i);
+            std::vector<Letter>& letterList{ letters.at(i) };
 
             char c = line.at(i);
 
@@ -27,7 +27,7 @@ int main() {
     }
 
     for(int i = 0; i < length; i++) {
-        std::vector<Letter>& letterList = letters.at(i);
+        std::vector<Letter>& letterList{ letters.at(i) };
         std::sort(letterList.begin(), letterList.end(), [](const Letter& a, const Letter& b) -> bool {
             if(a.count == b.count) return a.c < b.c;
             else return a.count > b.count;
@@ -38,7 +38,7 @@ int main() {
     std::cout << std::endl;
 
     for(int i = 0; i < length; i++) {
-        std::vector<Letter>& letterList = letters.at(i);
+        std::vector<Letter>& letterList{ letters.at(i) };
         std::cout << letterList.at(letterList.size() - 1).c;
     }
     std::cout << std::endl;

@@ -19,7 +19,7 @@ int main() {
         split(lineArgs, line, " ");
 
         if(lineArgs.at(0).find("cpy") == 0) {
-            int value{ toValue(registry, lineArgs.at(1)) };
+            int value = toValue(registry, lineArgs.at(1));
 
             std::string& registryName{ lineArgs.at(2) };
             registry[registryName] = value;
@@ -37,7 +37,7 @@ int main() {
 
         else if(lineArgs.at(0).find("jnz") == 0) {
             std::string& registryName{ lineArgs.at(1) };
-            int value{ toValue(registry, lineArgs.at(2)) };
+            int value = toValue(registry, lineArgs.at(2));
 
             if(toValue(registry, registryName) != 0) {
                 if(value == -5 && linePointer == 9) {   //this part might work just for my input.
@@ -51,7 +51,7 @@ int main() {
 
         else if(lineArgs.at(0).find("tgl") == 0) {
             std::string& registryName{ lineArgs.at(1) };
-            int value{ toValue(registry, registryName) };
+            int value = toValue(registry, registryName);
             
             if(linePointer + value < input.size()) {
                 std::string& toChange{ input.at(linePointer + value) };

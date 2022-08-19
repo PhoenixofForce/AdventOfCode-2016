@@ -1,10 +1,8 @@
 #include "Day03.h"
 
-int main() {
-    std::vector<std::string> triangleLines{};
-    getLines(triangleLines, 2016, 3);
+int main() {  
     std::vector<Triangle> triangles{};
-    for(std::string& line: triangleLines) triangles.push_back(line2Triangle(line));
+    getLines<Triangle>(triangles, 2016, 3, line2Triangle);
 
     int out1{0};
     for(const Triangle& t: triangles) {
@@ -18,9 +16,9 @@ int main() {
         Triangle& t2 = triangles.at(i + 1);
         Triangle& t3 = triangles.at(i + 2);
 
-        Triangle n1 = {t1.a, t2.a, t3.a};
-        Triangle n2 = {t1.b, t2.b, t3.b};
-        Triangle n3 = {t1.c, t2.c, t3.c};
+        Triangle n1{t1.a, t2.a, t3.a};
+        Triangle n2{t1.b, t2.b, t3.b};
+        Triangle n3{t1.c, t2.c, t3.c};
 
         if(checkTriangle(n1)) out2++;
         if(checkTriangle(n2)) out2++;

@@ -11,7 +11,7 @@ int main() {
 size_t decompress(const std::string& compressed, bool part2) {
     size_t out{};
     
-    bool inBuffer{false};
+    bool inBuffer = false;
     std::string buffer{};
 
     for(int i = 0; i < compressed.size(); i++) {
@@ -25,11 +25,11 @@ size_t decompress(const std::string& compressed, bool part2) {
         if(c == ')') {
             inBuffer = false;
 
-            int charCount{std::stoi(buffer.substr(0, buffer.find("x")))};
-            int duplicateCount{std::stoi(buffer.substr(buffer.find("x")+1))};
+            int charCount = std::stoi(buffer.substr(0, buffer.find("x")));
+            int duplicateCount = std::stoi(buffer.substr(buffer.find("x")+1));
 
-            std::string toDuplicate{compressed.substr(i + 1, charCount)};
-            size_t charCountInDuplication{part2? decompress(toDuplicate, true): toDuplicate.size()};
+            std::string toDuplicate{ compressed.substr(i + 1, charCount) };
+            size_t charCountInDuplication = part2? decompress(toDuplicate, true): toDuplicate.size();
             out += duplicateCount * charCountInDuplication;
             i += charCount;
 

@@ -4,8 +4,8 @@ int main() {
     std::vector<std::string> lines{};
     getLines(lines, 2016, 07);
     
-    int out{0};
-    int out2{0};
+    int out = 0;
+    int out2 = 0;
     for(int i = 0; i < lines.size(); i++) {
         if(processLine(lines.at(i))) out++;
         if(processLine2(lines.at(i))) out2++;

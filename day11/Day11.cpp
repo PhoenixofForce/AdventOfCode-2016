@@ -2,10 +2,10 @@
 
 bool compare(const std::vector<std::string>& v1, const std::vector<std::string>& v2)
 {
-    int leftChips{};
-    int rightChips{};
-    int leftGenerator{};
-    int rightGenerator{};
+    int leftChips = 0;
+    int rightChips = 0;
+    int leftGenerator = 0;
+    int rightGenerator = 0;
 
     for(const std::string& element: v1) {
         if(isGenerator(element)) leftGenerator++;
@@ -42,8 +42,8 @@ int main() {
     std::unordered_set<State> visited{};
     queue.push(current);
 
-    int moveCount{1};
-    int iterations{};
+    int moveCount = 1;
+    int iterations = 0;
     while(!queue.empty()) {
         current = queue.top();
         queue.pop();
@@ -74,17 +74,17 @@ int main() {
 
         for(int floorDiv = -1; floorDiv <= 1; floorDiv++) {
             for(int i = 0; i < currentFloor.size(); i++) {
-                std::string element = currentFloor.at(i);
+                const std::string& element{ currentFloor.at(i) };
                 if((!shouldMoveDown && floorDiv < 0) || floorDiv == 0 || (current.elevator + floorDiv < 0) || (current.elevator + floorDiv > 3)) continue;
 
-                bool moveChip{false};
-                bool moveGenerator{false};
-                bool moveChipX2{false};
-                bool moveChipGenerator{false};
-                bool moveGeneratorX2{false};
+                bool moveChip = false;
+                bool moveGenerator = false;
+                bool moveChipX2 = false;
+                bool moveChipGenerator = false;
+                bool moveGeneratorX2 = false;
 
                 for(int j = 0; j <= i; j++) {
-                    std::string element2 = currentFloor.at(j);
+                    const std::string& element2{ currentFloor.at(j) };
 
                     if(element != element2) {
                         if(isChip(element) && isChip(element2)) {
@@ -171,7 +171,7 @@ bool validFloor(const std::vector<std::string>& floor) {
         if(isChip(element)) {
             std::string type{ element.substr(0, element.find("-co")) };
             
-            bool containsGenerator{false};
+            bool containsGenerator = false;
             for(const std::string& generator: generators) {
                 if(generator.find(type) != std::string::npos) {
                     containsGenerator = true;
@@ -202,7 +202,7 @@ void fillFloor(std::vector<std::string>& floor, const std::string& line) {
     std::string replacedLine{ std::regex_replace(line, std::regex{"(\\.|, and| and)"}, ",") };
     std::cout << replacedLine << std::endl;
     while(replacedLine.find(" a ") != std::string::npos) {
-        size_t start{replacedLine.find(" a ") + 3};
+        size_t start = replacedLine.find(" a ") + 3;
         std::string element{ replacedLine.substr(start, replacedLine.find(",") - start) };
         replacedLine = replacedLine.substr(start + element.size() + 1);
 
@@ -227,18 +227,6 @@ bool operator<(const State& lhs, const State& rhs) {
     return lhs.numberOfMoves - heurstic(lhs) < rhs.numberOfMoves - heurstic(rhs);
 }
 
-bool operator<=(const State& lhs, const State& rhs) {
-    return lhs.numberOfMoves - heurstic(lhs) >= rhs.numberOfMoves - heurstic(rhs);
-}
-
-bool operator>(const State& lhs, const State& rhs) {
-    return lhs.numberOfMoves - heurstic(lhs) > rhs.numberOfMoves - heurstic(rhs);
-}
-
-bool operator>=(const State& lhs, const State& rhs) {
-    return lhs.numberOfMoves - heurstic(lhs) >= rhs.numberOfMoves - heurstic(rhs);
-}
-
 bool operator==(const State& lhs, const State& rhs) {
     return compare(lhs.floor1, rhs.floor1) && 
             compare(lhs.floor2, rhs.floor2) && 
@@ -254,12 +242,11 @@ int heurstic(const State& state) {
             state.floor4.size();
 }
 
-namespace std {
-size_t hash<State>::operator()(const State &state) const{
+size_t std::hash<State>::operator()(const State &state) const{
     // computes the hash of an employee using a variant 
     // of the Fowler-Noll-Vo hash function
     size_t result = 2166136261;
- 
+
     std::vector<std::string> list = state.floor1;
     std::sort(list.begin(), list.end());
     for(const std::string& s: list) {
@@ -267,7 +254,7 @@ size_t hash<State>::operator()(const State &state) const{
             result = (result * 16777619) ^s[i];
         }
     }
-    
+
     list = state.floor2;
     std::sort(list.begin(), list.end());
     for(const std::string& s: list) {
@@ -291,7 +278,6 @@ size_t hash<State>::operator()(const State &state) const{
             result = (result * 16777619) ^s[i];
         }
     }
- 
+
     return result ^ (state.elevator << 1);
-  }
 }

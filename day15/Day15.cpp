@@ -32,7 +32,7 @@ disc string2disc(const std::string& line) {
 
 bool checkState(int t, std::vector<disc>& input) {
     for(int i = 0; i < input.size(); i++) {
-        disc d = input.at(i);
+        const disc& d{input.at(i)};
         if((t + i + 1 + d.currentPosition) % d.totalPositions != 0) {
             return false;
         }

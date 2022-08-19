@@ -23,20 +23,20 @@ int main() {
         auto yStart{ splitLine.at(0).find("y") };
         auto yEnd{ line.find(" ") };
 
-        int x{ std::stoi(splitLine.at(0).substr(xStart, yStart - xStart - 1)) };
-        int y{ std::stoi(splitLine.at(0).substr(yStart + 1)) };
+        int x = std::stoi(splitLine.at(0).substr(xStart, yStart - xStart - 1));
+        int y = std::stoi(splitLine.at(0).substr(yStart + 1));
 
         if(x > maxX) maxX = x;
         if(y > maxY) maxY = y;
 
         std::string placeholder{ std::regex_replace(splitLine.at(1), std::regex{"T"}, "") }; 
-        int size{ std::stoi(placeholder) };
+        int size = std::stoi(placeholder);
 
         placeholder = std::regex_replace(splitLine.at(2), std::regex{"T"}, ""); 
-        int used{ std::stoi(placeholder) };
+        int used = std::stoi(placeholder);
 
         placeholder = std::regex_replace(splitLine.at(3), std::regex{"T"}, ""); 
-        int avail{ std::stoi(placeholder) };
+        int avail = std::stoi(placeholder);
 
         if(used == 0) {
             emptyStartPos.x = x;
@@ -50,7 +50,7 @@ int main() {
     }
     goalPos.x = maxX;
 
-    int out{};
+    int out = 0;
     for (const auto &[pos1, server1]: servers) {
         for (const auto &[pos2, server2]: servers) {
             if(pos1 != pos2 && server1.used > 0 && server1.used <= server2.avail) out++;
@@ -147,7 +147,7 @@ bool operator!=(const Pos& l, const Pos& r) {
 }
 
 size_t std::hash<State>::operator()(const State &state) const {
-    size_t hash{17};
+    size_t hash = 17;
     hash = hash*31 + state.goalPos.x;
     hash = hash*31 + state.goalPos.y;
     hash = hash*31 + state.emptyPos.x;
@@ -156,10 +156,10 @@ size_t std::hash<State>::operator()(const State &state) const {
 }
 
 int heuristic(const State& state) {
-    int emptyGoalDiff{ std::abs(state.goalPos.x - state.emptyPos.x) + std::abs(state.goalPos.y - state.emptyPos.y) };
+    int emptyGoalDiff = std::abs(state.goalPos.x - state.emptyPos.x) + std::abs(state.goalPos.y - state.emptyPos.y);
     emptyGoalDiff -= 1;
 
-    int goal00Diff{ std::abs(state.goalPos.x) + std::abs(state.goalPos.y) };
+    int goal00Diff = std::abs(state.goalPos.x) + std::abs(state.goalPos.y);
 
     return emptyGoalDiff + goal00Diff * 5;
 }

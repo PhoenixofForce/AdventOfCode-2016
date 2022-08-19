@@ -19,7 +19,7 @@ int main() {
         split(lineArgs, line, " ");
 
         if(lineArgs.at(0).find("cpy") == 0) {
-            int value{ toValue(registry, lineArgs.at(1)) };
+            int value = toValue(registry, lineArgs.at(1));
 
             std::string& registryName{ lineArgs.at(2) };
             registry[registryName] = value;

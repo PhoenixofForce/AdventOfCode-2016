@@ -50,8 +50,7 @@ bool isValid(const State& state) {
 }
 
 
-namespace std {
-  size_t hash<State>::operator()(const State &state) const {
+size_t std::hash<State>::operator()(const State &state) const {
     std::hash<std::string> hasher{};
 
     size_t hash = 17;
@@ -59,23 +58,11 @@ namespace std {
     hash = hash*31 + state.y;
     hash = hash*31 + hasher(md5(id + state.path).substr(0, 4));
     return hash;
-  }
 }
+
 
 bool operator<(const State& lhs, const State& rhs) {
     return lhs.moves < rhs.moves;
-}
-
-bool operator<=(const State& lhs, const State& rhs) {
-    return lhs.moves <= rhs.moves;
-}
-
-bool operator>(const State& lhs, const State& rhs) {
-    return lhs.moves > rhs.moves;
-}
-
-bool operator>=(const State& lhs, const State& rhs) {
-    return lhs.moves >= rhs.moves;
 }
 
 bool operator==(const State& lhs, const State& rhs) {

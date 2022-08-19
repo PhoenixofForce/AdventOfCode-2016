@@ -1,7 +1,7 @@
 #include "Day25.h"
 
 int main() {
-    bool part2{true};
+    bool part2 = true;
 
     std::vector<std::string> input{};
     getLines(input, 2016, 25);
@@ -24,8 +24,8 @@ bool testInput(const std::vector<std::string> input, int a) {
     int linePointer = 0;
 
     registry["a"] = a;
-    int lastOutput{1};
-    int validOutputs{};
+    int lastOutput = 1;
+    int validOutputs = 0;
 
     std::vector<std::string> splitted{};
     while(linePointer >= 0 && linePointer < input.size()) {
@@ -35,7 +35,7 @@ bool testInput(const std::vector<std::string> input, int a) {
         split(lineArgs, line, " ");
 
         if(lineArgs.at(0).find("cpy") == 0) {
-            int value{ toValue(registry, lineArgs.at(1)) };
+            int value = toValue(registry, lineArgs.at(1));
 
             std::string& registryName{ lineArgs.at(2) };
             registry[registryName] = value;
@@ -53,7 +53,7 @@ bool testInput(const std::vector<std::string> input, int a) {
 
         else if(lineArgs.at(0).find("jnz") == 0) {
             std::string& registryName{ lineArgs.at(1) };
-            int value{ toValue(registry, lineArgs.at(2)) };
+            int value = toValue(registry, lineArgs.at(2));
 
             if(toValue(registry, registryName) != 0) {
                 if(value == -5 && linePointer == 7) {   //this part might work just for my input.
@@ -67,7 +67,7 @@ bool testInput(const std::vector<std::string> input, int a) {
 
         else if(lineArgs.at(0).find("out") == 0) {
             std::string& registryName{ lineArgs.at(1) };
-            int value{ toValue(registry, registryName) };
+            int value = toValue(registry, registryName);
 
             if((value == 0 || value == 1) && value != lastOutput) {
                 lastOutput = value;

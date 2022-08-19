@@ -7,7 +7,7 @@ int main() {
 
     int index = 0;
     while(out.size() < 8) {
-        std::string hash = md5(input + std::to_string(index));
+        std::string hash{ md5(input + std::to_string(index)) };
 
         if(hash.find("00000") == 0) {
             out += hash.at(5);
@@ -23,7 +23,7 @@ int main() {
     index = 0;
 
     while(found < 8) {
-         std::string hash = md5(input + std::to_string(index));
+         std::string hash{ md5(input + std::to_string(index)) };
 
         if(hash.find("00000") == 0) {
             char cIndex = hash.at(5);

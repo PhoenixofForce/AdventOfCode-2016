@@ -13,7 +13,7 @@ int main() {
 }
 
 std::string buildDragonCurve(const std::string& line) {
-    std::string secondPart{line};
+    std::string secondPart = line;
     std::reverse(secondPart.begin(), secondPart.end());
     std::replace(secondPart.begin(), secondPart.end(), '1', '2');
     std::replace(secondPart.begin(), secondPart.end(), '0', '1');
@@ -24,7 +24,7 @@ std::string buildDragonCurve(const std::string& line) {
 
 std::string generateChecksum(const std::string& line, int maxLength) {
     std::string out{};
-    for(int i{0}; i < std::min(maxLength, (int) line.size()); i += 2) {
+    for(int i = 0; i < std::min(maxLength, (int) line.size()); i += 2) {
         char c1 = line.at(i);
         char c2 = line.at(i + 1);
         out += (c1 == c2? "1": "0");

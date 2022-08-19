@@ -18,18 +18,14 @@ struct State {
     int elevator{};
 };
 
-namespace std {
 template <>
-class hash<State> {
+class std::hash<State> {
  public:
   size_t operator()(const State &state) const;
 };
-}
+
 
 bool operator<(const State& lhs, const State& rhs);
-bool operator<=(const State& lhs, const State& rhs);
-bool operator>(const State& lhs, const State& rhs);
-bool operator>=(const State& lhs, const State& rhs);
 bool operator==(const State& lhs, const State& rhs);
 int heurstic(const State& state);
 

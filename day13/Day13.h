@@ -12,17 +12,13 @@ struct Pos {
     int moves{};
 };
 
-namespace std {
 template <>
-class hash<Pos> {
+class std::hash<Pos> {
  public:
   size_t operator()(const Pos &state) const;
 };
-}
+
 bool operator<(const Pos& lhs, const Pos& rhs);
-bool operator<=(const Pos& lhs, const Pos& rhs);
-bool operator>(const Pos& lhs, const Pos& rhs);
-bool operator>=(const Pos& lhs, const Pos& rhs);
 bool operator==(const Pos& lhs, const Pos& rhs);
 
 bool isEnd(const Pos& pos);

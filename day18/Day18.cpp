@@ -25,7 +25,7 @@ int main() {
 
 std::string genNextRow(const std::string& currentRow) {
     std::string out{};
-    for(int i{0}; i < currentRow.size(); i++) {
+    for(int i = 0; i < currentRow.size(); i++) {
         bool leftTrap = i > 0 && currentRow.at(i - 1) == '^';
         bool centerTrap = currentRow.at(i) == '^';
         bool rightTrap = i < currentRow.size() - 1 && currentRow.at(i + 1) == '^';
